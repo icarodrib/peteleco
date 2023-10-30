@@ -1,22 +1,21 @@
-package br.com.peteleco;
+package br.com.peteleco.cliente;
+
 
 import br.com.peteleco.util.ConnectionFactory;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author 09869114709
- */
-public class ExemploInsert {
+
+public class ExemploInsertCliente {
     
     public static void main(String[] args) {
         
         EntityManager em = ConnectionFactory.getEntityManager();
-        Produto p1 = new Produto("Iphone 14", "Smartphone", 3500);
-        ProdutoDAO dao = new ProdutoDAO(em);
+        Cliente cli;
+        cli = new Cliente("Lucas", "12345678900","Avenida Paulo de Frontin",912345678);
+        ClienteDAO dao = new ClienteDAO(em);
         
         em.getTransaction().begin();
-        dao.cadastrar(p1);
+        dao.cadastrar(cli);
         em.getTransaction().commit();
         
         em.close();

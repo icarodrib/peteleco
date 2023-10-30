@@ -1,13 +1,10 @@
-package br.com.peteleco;
+package br.com.peteleco.produto;
 
 import br.com.peteleco.util.ConnectionFactory;
 import java.time.LocalDate;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author 09869114709
- */
+
 public class ExemploUpdate {
     
     public static void main(String[] args) {

@@ -4,12 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author 09869114709
- */
+
 @Entity
 @Table(name="pets")
 public class Pet {
@@ -29,20 +28,22 @@ public class Pet {
     private String tipo;
     private String raca;
     private String sexo;
-    private int cod_cli;
+    
+    @ManyToOne
+    @JoinColumn(name = "cod_cli", referencedColumnName = "codigo") // cod_cli é a chave estrangeira na tabela pets, e código é a chave primária na tabela clientes
+    private Cliente cliente;
 
     public Pet() {
     }
 
-    public Pet(String nome, int idade, float peso, String tipo, String raca, String sexo, int cod_cli) {
+    public Pet(String nome, int idade, float peso, String tipo, String raca, String sexo, Cliente cliente) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
         this.tipo = tipo;
         this.raca = raca;
         this.sexo = sexo;
-        this.cod_cli = cod_cli;
-        
+        this.cliente = cliente;
     }
 
     public int getCodigo() {
@@ -73,8 +74,8 @@ public class Pet {
         return sexo;
     }
 
-    public int getCod_cli() {
-        return cod_cli;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public void setCodigo(int codigo) {
@@ -105,14 +106,15 @@ public class Pet {
         this.sexo = sexo;
     }
 
-    public void setCod_cli(int cod_cli) {
-        this.cod_cli = cod_cli;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public String toString() {
-        return "Pet{" + "codigo=" + codigo + ", nome=" + nome + ", idade=" + idade + ", peso=" + peso + ", tipo=" + tipo + ", raca=" + raca + ", sexo=" + sexo + ", cod_cli=" + cod_cli + '}';
+        return "Pet{" + "codigo=" + codigo + ", nome=" + nome + ", idade=" + idade + ", peso=" + peso + ", tipo=" + tipo + ", raca=" + raca + ", sexo=" + sexo + ", cliente=" + cliente + '}';
     }
+
 
     
 }

@@ -1,5 +1,5 @@
 
-package br.com.peteleco;
+package br.com.peteleco.produto;
 
 import java.time.LocalDate;
 import javax.persistence.Entity;
@@ -8,10 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author 09869114709
- */
+
 @Entity
 @Table(name="produtos")
 public class Produto {

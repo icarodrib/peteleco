@@ -1,12 +1,9 @@
 
-package br.com.peteleco;
+package br.com.peteleco.produto;
 
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author 09869114709
- */
+
 public class ProdutoDAO {
     private EntityManager em;
     

@@ -7,10 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author 09869114709
- */
+
 @Entity
 @Table(name="servicos")
 public class Servico {

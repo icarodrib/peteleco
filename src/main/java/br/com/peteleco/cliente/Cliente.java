@@ -1,15 +1,16 @@
 package br.com.peteleco.cliente;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author 09869114709
- */
+
 @Entity
 @Table(name="clientes")
 public class Cliente {
@@ -24,19 +25,31 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String nome;
-    private int cpf;
+    private String cpf;
     private String endereco;
     private int telefone;
+    
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Pet> pets = new ArrayList<>();
 
     public Cliente() {
     }
 
-    public Cliente(String nome, int cpf, String endereco,int telefone) {
+    public Cliente(String nome, String cpf, String endereco,int telefone) {
         this.nome = nome;
-        this.cpf = cpf;
+        if (cpf.matches("\\d{11}")) {
+            this.cpf = cpf;
+        } else {
+            throw new IllegalArgumentException("CPF inválido: " + cpf);
+        }
         this.endereco = endereco;
         this.telefone = telefone;
     }
+    
+    public void adicionarPet(Pet pet) {
+    pets.add(pet);
+    pet.setCliente(this); 
+}
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
@@ -46,8 +59,12 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
+    public void setCpf(String cpf) {
+        if (cpf.matches("\\d{11}")) {
+            this.cpf = cpf;
+        } else {
+            throw new IllegalArgumentException("CPF inválido: " + cpf);
+        }
     }
 
     public void setEndereco(String endereco) {
@@ -66,7 +83,7 @@ public class Cliente {
         return nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -78,9 +95,20 @@ public class Cliente {
         return telefone;
     }
 
+    public String petsToString() {
+        StringBuilder petsString = new StringBuilder();
+        for (Pet pet : pets) {
+            petsString.append(pet.toString()).append(", ");
+        }
+        // Remove a vírgula e o espaço extra no final
+        return petsString.length() > 0 ? petsString.substring(0, petsString.length() - 2) : "";
+    }
+
+    
     @Override
     public String toString() {
-        return "Cliente{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + ", telefone=" + telefone + '}';
+        return "Cliente{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + ", telefone=" + telefone + ", pets=" + pets + '}';
     }
+
     
 }
