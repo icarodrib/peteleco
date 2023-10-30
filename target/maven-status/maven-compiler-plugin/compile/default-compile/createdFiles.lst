@@ -1,0 +1,10 @@
+br\com\peteleco\cliente\Pet.class
+br\com\peteleco\ExemploInsert.class
+br\com\peteleco\Produto.class
+br\com\peteleco\ProdutoDAO.class
+br\com\peteleco\ExemploUpdate.class
+br\com\peteleco\util\ConnectionFactory.class
+br\com\peteleco\servicos\Servico.class
+br\com\peteleco\cliente\Cliente.class
+br\com\peteleco\conta\Conta.class
+br\com\peteleco\funcionario\Funcionario.class
